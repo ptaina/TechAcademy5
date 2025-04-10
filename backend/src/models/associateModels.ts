@@ -1,4 +1,4 @@
-// src/models/associateModels.ts
+
 
 import AppointmentModel from './AppointmentModel';
 import PatientModel from './PatientModel';

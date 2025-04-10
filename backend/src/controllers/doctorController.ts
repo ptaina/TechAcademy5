@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { ValidationError } from "sequelize";
 import DoctorModel from "../models/DoctorModel";
-// ✔️ Agora está correto
 
 
-// Buscar todos os médicos
+
+
 export const getAllDoctors = async (req: Request, res: Response) => {
   try {
     const doctors = await DoctorModel.findAll();
@@ -15,7 +15,7 @@ export const getAllDoctors = async (req: Request, res: Response) => {
   }
 };
 
-// Buscar médico por ID
+
 export const getDoctorById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -32,7 +32,7 @@ export const getDoctorById = async (req: Request, res: Response) => {
   }
 };
 
-// Criar novo médico
+
 export const createDoctor = async (req: Request, res: Response) => {
   try {
     const { name, speciality, crm } = req.body;
@@ -56,7 +56,7 @@ export const createDoctor = async (req: Request, res: Response) => {
   }
 };
 
-// Atualizar médico por ID
+
 export const updateDoctorById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -91,7 +91,7 @@ export const updateDoctorById = async (req: Request, res: Response) => {
   }
 };
 
-// Deletar médico por ID
+
 export const destroyDoctorById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

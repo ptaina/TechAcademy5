@@ -3,13 +3,13 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/database";
 
 
-// Modelo do paciente usando classe e init
+
 class PatientModel extends Model {
   id!: number;
-  name!: string;           // Nome do paciente
-  cpf!: string;            // CPF do paciente
-  phone!: string;          // Telefone de contato
-  address!: string;        // Endereço
+  name!: string;           
+  cpf!: string;            
+  phone!: string;          
+  address!: string;        
 }
 
 PatientModel.init(
@@ -28,7 +28,7 @@ PatientModel.init(
       allowNull: false,
       unique: true,
       validate: {
-        len: [11, 11], // CPF deve ter 11 caracteres
+        len: [11, 11], 
       },
     },
     phone: {

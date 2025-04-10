@@ -3,7 +3,7 @@ import AppointmentModel from "../models/AppointmentModel";
 import PatientModel from "../models/PatientModel";
 import DoctorModel from "../models/DoctorModel";
 
-// Criar nova consulta
+
 export const createAppointment = async (req: Request, res: Response) => {
   try {
     const { patientId, doctorId, date, status } = req.body;
@@ -29,7 +29,7 @@ export const createAppointment = async (req: Request, res: Response) => {
   }
 };
 
-// Buscar todas as consultas com dados do paciente e médico
+
 export const getAllAppointments = async (req: Request, res: Response) => {
   try {
     const appointments = await AppointmentModel.findAll({
@@ -46,7 +46,7 @@ export const getAllAppointments = async (req: Request, res: Response) => {
   }
 };
 
-// Atualizar o status da consulta
+
 export const updateAppointmentStatus = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

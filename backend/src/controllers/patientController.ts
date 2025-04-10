@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import PatientModel from "../models/PatientModel";
 
 
-// Buscar todos os pacientes
+
 export const getAllPatients = async (req: Request, res: Response) => {
   try {
     const patients = await PatientModel.findAll();
@@ -14,7 +14,7 @@ export const getAllPatients = async (req: Request, res: Response) => {
   }
 };
 
-// Buscar paciente por ID
+
 export const getPatientById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -31,7 +31,7 @@ export const getPatientById = async (req: Request, res: Response) => {
   }
 };
 
-// Criar paciente
+
 export const createPatient = async (req: Request, res: Response) => {
   try {
     const { name, cpf, phone, address } = req.body;
@@ -57,7 +57,7 @@ export const createPatient = async (req: Request, res: Response) => {
   }
 };
 
-// Atualizar paciente
+
 export const updatePatientById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -83,7 +83,7 @@ export const updatePatientById = async (req: Request, res: Response) => {
   }
 };
 
-// Deletar paciente
+
 export const destroyPatientById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;

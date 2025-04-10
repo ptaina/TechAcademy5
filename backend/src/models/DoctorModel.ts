@@ -2,12 +2,12 @@ import { DataTypes, Model } from "sequelize";
 import sequelize from '../config/database';
 
 
-// Modelo do médico usando classe
+
 class DoctorModel extends Model {
   id!: number;
-  name!: string; // Nome do médico
-  speciality!: string; // Especialidade
-  crm!: string; // CRM do médico
+  name!: string; 
+  speciality!: string; 
+  crm!: string; 
 }
 
 DoctorModel.init(
