@@ -10,7 +10,10 @@ export const getAll = async (req: Request, res: Response) => {
       attributes: { exclude: ["password"] },
     });
 
-    return res.status(200).json(users);
+    return res.status(200).json({
+      message: "Users fetched successfully",
+      users,
+    });
   } catch (error) {
     console.error("Error fetching users:", error);
     return res.status(500).json({ error: "Internal Server Error" });
@@ -28,7 +31,10 @@ export const getUserById = async (req: Request, res: Response) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    return res.status(200).json(user);
+    return res.status(200).json({
+      message: "User fetched successfully",
+      user,
+    });
   } catch (error) {
     console.error("Error fetching user:", error);
     return res.status(500).json({ error: "Internal Server Error" });
@@ -145,7 +151,7 @@ export const destroyUserById = async (req: Request, res: Response) => {
     }
 
     await user.destroy();
-    return res.status(204).send();
+    return res.status(200).json({ message: "User deleted successfully" });
   } catch (error) {
     console.error("Error deleting user:", error);
     return res.status(500).json({ error: "Internal Server Error" });
