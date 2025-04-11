@@ -2,15 +2,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate, Link } from "react-router-dom";
+import axios from "axios"; 
 
 const registerSchema = z.object({
   name: z.string().min(3, "Nome deve ter no mínimo 3 caracteres"),
   email: z.string().email("E-mail inválido"),
+  cpf: z.string().length(11, "CPF deve ter 11 dígitos").regex(/^\d{11}$/, "CPF inválido"),
   password: z.string().min(6, "Senha deve ter no mínimo 6 caracteres"),
-  confirmPassword: z.string().min(6, "Confirmar senha deve ter no mínimo 6 caracteres"),
-}).refine((data) => data.password === data.confirmPassword, {
-  message: "As senhas não coincidem",
-  path: ["confirmPassword"], 
 });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
@@ -26,9 +24,18 @@ export default function Register() {
 
   const navigate = useNavigate();
 
-  const onSubmit = (data: RegisterFormData) => {
-    console.log("Dados de registro:", data);
-    navigate('/login');
+  const onSubmit = async (data: RegisterFormData) => {
+    try {
+      const response = await axios.post('http://localhost:3001/users', data);
+
+      if (response.status === 201) {
+        console.log("Usuário registrado com sucesso!");
+        navigate('/login'); 
+      }
+    } catch (error) {
+      console.error("Erro ao registrar usuário:", error);
+      alert("Erro ao registrar. Tente novamente.");
+    }
   };
 
   return (
@@ -80,6 +87,21 @@ export default function Register() {
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
+            CPF
+          </label>
+          <input
+            type="text"
+            {...register("cpf")}
+            className="w-full mt-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Digite seu CPF"
+          />
+          {errors.cpf && (
+            <p className="text-red-500 text-xs mt-1">{errors.cpf.message}</p>
+          )}
+        </div>
+
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700">
             Senha
           </label>
           <input
@@ -90,21 +112,6 @@ export default function Register() {
           />
           {errors.password && (
             <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
-          )}
-        </div>
-
-        <div className="mb-6">
-          <label className="block text-sm font-medium text-gray-700">
-            Confirmar Senha
-          </label>
-          <input
-            type="password"
-            {...register("confirmPassword")}
-            className="w-full mt-2 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Confirme sua senha"
-          />
-          {errors.confirmPassword && (
-            <p className="text-red-500 text-xs mt-1">{errors.confirmPassword.message}</p>
           )}
         </div>
 
