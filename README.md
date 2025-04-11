@@ -59,8 +59,3 @@ O foco do projeto é aplicar conceitos de desenvolvimento fullstack com boas pr�
 
 Foram implementados testes para todos os casos de uso obrigatórios marcados com `*`, garantindo a qualidade e funcionamento das funcionalidades principais.
 
----
-
-## 📁 Estrutura do Projeto
-
-### Frontend
