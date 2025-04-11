@@ -34,11 +34,11 @@ export default function Login() {
     >
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-8 rounded-md shadow-md w-full max-w-sm" // Fundo branco com bordas arredondadas e sombra suave
+        className="bg-white p-8 rounded-md shadow-md w-full max-w-sm"
       >
         <h2 className="text-2xl font-semibold text-center mb-6 text-blue-700">
           Acesso ao Sistema
-        </h2> {/* Título mais específico e cor azul */}
+        </h2> 
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-gray-700">
